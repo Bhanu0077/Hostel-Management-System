@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HMS Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        /* LAYOUT */
+        .container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 70px;
+            background: linear-gradient(180deg, #6366f1, #8b5cf6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* IMPORTANT */
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .sidebar:hover {
+            width: 200px;
+        }
+
+        /* TOP MENU */
+        .menu {
+            padding-top: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .icon {
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .text {
+            opacity: 0;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .sidebar:hover .text {
+            opacity: 1;
+        }
+
+        /* LOGOUT */
+        .logout {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logout:hover {
+            background: rgba(255, 0, 0, 0.2);
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .large {
+            grid-column: span 2;
+        }
+
+        .title {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* BUTTON */
+        .btn {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #6366f1;
+            color: white;
+        }
+
+        /* INPUT */
+        input {
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 10px;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #22c55e;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div>HMS Dashboard</div>
+        <div>👤</div>
+    </div>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <!-- MENU -->
+            <div class="menu">
+
+                <div class="menu-item active" onclick="loadPage('dashboard', this)">
+                    <div class="icon">🏠</div>
+                    <div class="text">Dashboard</div>
+                </div>
+
+                <div class="menu-item" onclick="loadPage('students', this)">
+                    <div class="icon">👨‍🎓</div>
+                    <div class="text">Students</div>
+                </div>
+
+                <div class="menu-item" onclick="loadPage('rooms', this)">
+                    <div class="icon">🏢</div>
+                    <div class="text">Rooms</div>
+                </div>
+
+                <div class="menu-item" onclick="loadPage('fees', this)">
+                    <div class="icon">💰</div>
+                    <div class="text">Fees</div>
+                </div>
+
+            </div>
+
+            <!-- LOGOUT -->
+            <div class="logout" onclick="logout()">
+                <div class="icon">🚪</div>
+                <div class="text">Logout</div>
+            </div>
+
+        </div>
+
+        <!-- MAIN -->
+        <div class="main" id="mainContent"></div>
+
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let students = 248;
+
+        /* PAGE SWITCH */
+        function loadPage(page, el) {
+
+            document.querySelectorAll(".menu-item")
+                .forEach(i => i.classList.remove("active"));
+            el.classList.add("active");
+
+            const main = document.getElementById("mainContent");
+
+            if (page === "dashboard") {
+                main.innerHTML = `
+      <div class="grid">
+        <div class="card">
+          <div class="title">Students</div>
+          <div class="value" id="studentCount">0</div>
+        </div>
+
+        <div class="card">
+          <div class="title">Vacant Rooms</div>
+          <div class="value">12</div>
+        </div>
+
+        <div class="card">
+          <div class="title">Revenue</div>
+          <div class="value">₹1.2L</div>
+        </div>
+
+        <div class="card">
+          <div class="title">Pending Fees</div>
+          <div class="value">₹35K</div>
+        </div>
+
+        <div class="card large">📊 Analytics Panel</div>
+      </div>
+    `;
+
+                animateCount("studentCount", students);
+            }
+
+            else if (page === "students") {
+                main.innerHTML = `
+      <div class="card">
+        <h3>Add Student</h3>
+        <input id="name" placeholder="Student Name">
+        <button class="btn" onclick="addStudent()">Add</button>
+      </div>
+    `;
+            }
+
+            else if (page === "rooms") {
+                main.innerHTML = `<div class="card">🏢 Room Management</div>`;
+            }
+
+            else if (page === "fees") {
+                main.innerHTML = `<div class="card">💰 Fees Management</div>`;
+            }
+        }
+
+        /* COUNT ANIMATION */
+        function animateCount(id, target) {
+            let count = 0;
+            const el = document.getElementById(id);
+
+            const interval = setInterval(() => {
+                count += Math.ceil(target / 30);
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
+                el.innerText = count;
+            }, 30);
+        }
+
+        /* ADD STUDENT */
+        function addStudent() {
+            const name = document.getElementById("name").value;
+            if (!name) return;
+
+            students++;
+            showToast("Student Added ✅");
+        }
+
+        /* TOAST */
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 2000);
+        }
+
+        /* LOGOUT */
+        function logout() {
+            showToast("Logged out 👋");
+
+            setTimeout(() => {
+                window.location.href = "index.html"; // redirect
+            }, 1000);
+        }
+
+        /* INITIAL LOAD */
+        window.onload = () => {
+            loadPage("dashboard", document.querySelector(".menu-item"));
+        };
+    </script>
+
+</body>
+
+</html>
