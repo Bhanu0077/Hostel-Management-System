@@ -1,31 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Login() {
+function SetPassword() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = async () => {
+    const handleSetPassword = async () => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", {
+            await axios.post("http://localhost:5000/api/auth/set-password", {
                 email,
                 password,
             });
-
-            // store token
-            localStorage.setItem("token", res.data.token);
-
-            alert("Login successful!");
-
-            window.location.href = "/dashboard";
+            alert("Password set successfully!");
+            window.location.href = "/";
         } catch (err) {
-            alert("Invalid credentials");
+            alert("Error setting password");
         }
     };
 
     return (
         <div style={{ textAlign: "center", marginTop: "100px" }}>
-            <h2>Login</h2>
+            <h2>Set Password</h2>
 
             <input
                 type="email"
@@ -43,9 +38,9 @@ function Login() {
 
             <br /><br />
 
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={handleSetPassword}>Set Password</button>
         </div>
     );
 }
 
-export default Login;
+export default SetPassword;
