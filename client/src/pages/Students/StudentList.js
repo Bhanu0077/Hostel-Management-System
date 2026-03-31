@@ -3,7 +3,7 @@ import axios from "axios";
 
 function StudentList() {
     const [students, setStudents] = useState([]);
-
+    const [search, setSearch] = useState("");
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [fee, setFee] = useState("");
@@ -18,6 +18,13 @@ function StudentList() {
     const fetchStudents = async () => {
         const res = await axios.get("http://localhost:5000/api/students/all");
         setStudents(res.data);
+    };
+
+    // FETCH PENDING
+    const fetchPending = async () => {
+        const res = await axios.get("http://localhost:5000/api/students/all");
+        const pending = res.data.filter((s) => (s.fee || 0) > (s.paid || 0));
+        setStudents(pending);
     };
 
     useEffect(() => {
@@ -77,6 +84,17 @@ function StudentList() {
 
             {/* FORM */}
             <div style={{ marginBottom: "20px" }}>
+                <input
+                    placeholder="Search by name"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                <button style={{ margin: "5px" }} onClick={fetchStudents}>
+                    All
+                </button>
+                <button style={{ margin: "5px" }} onClick={fetchPending}>
+                    Pending
+                </button>
                 <input
                     placeholder="Name"
                     value={name}
@@ -151,45 +169,55 @@ function StudentList() {
                 </thead>
 
                 <tbody>
-                    {students.map((s) => {
-                        const paid = s.paid || 0;
-                        const feeValue = s.fee || 0;
-                        const remaining = feeValue - paid;
+                    {students
+                        .filter((s) =>
+                            s.name.toLowerCase().includes(search.toLowerCase())
+                        )
+                        .map((s) => {
+                            const paid = s.paid || 0;
+                            const feeValue = s.fee || 0;
+                            const remaining = feeValue - paid;
 
-                        return (
-                            <tr key={s._id}>
-                                <td>{s._id}</td>
-                                <td>{s.name}</td>
-                                <td>{s.phone}</td>
-                                <td>{feeValue}</td>
+                            return (
+                                <tr
+                                    key={s._id}
+                                    style={{
+                                        backgroundColor:
+                                            (s.fee || 0) > (s.paid || 0) ? "#ffcccc" : "white",
+                                    }}
+                                >
+                                    <td>{s._id}</td>
+                                    <td>{s.name}</td>
+                                    <td>{s.phone}</td>
+                                    <td>{feeValue}</td>
 
-                                <td>
-                                    {s.feeDueDate
-                                        ? new Date(s.feeDueDate).toLocaleDateString()
-                                        : "-"}
-                                </td>
+                                    <td>
+                                        {s.feeDueDate
+                                            ? new Date(s.feeDueDate).toLocaleDateString()
+                                            : "-"}
+                                    </td>
 
-                                <td>{s.washingMachine ? "Yes" : "No"}</td>
-                                <td>{s.guardian?.name}</td>
-                                <td>{s.guardian?.phone}</td>
+                                    <td>{s.washingMachine ? "Yes" : "No"}</td>
+                                    <td>{s.guardian?.name}</td>
+                                    <td>{s.guardian?.phone}</td>
 
-                                <td>
-                                    <button onClick={() => deleteStudent(s._id)}>
-                                        Delete
-                                    </button>
-                                </td>
+                                    <td>
+                                        <button onClick={() => deleteStudent(s._id)}>
+                                            Delete
+                                        </button>
+                                    </td>
 
-                                <td>
-                                    <button onClick={() => payFee(s._id)}>
-                                        Pay ₹1000
-                                    </button>
-                                </td>
+                                    <td>
+                                        <button onClick={() => payFee(s._id)}>
+                                            Pay ₹1000
+                                        </button>
+                                    </td>
 
-                                <td>{paid}</td>
-                                <td>{remaining}</td>
-                            </tr>
-                        );
-                    })}
+                                    <td>{paid}</td>
+                                    <td>{remaining}</td>
+                                </tr>
+                            );
+                        })}
                 </tbody>
             </table>
         </div>
