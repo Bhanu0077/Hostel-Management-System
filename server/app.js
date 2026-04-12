@@ -16,5 +16,8 @@ app.get('/', (req, res) => {
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/students', require('./routes/studentRoutes'));
 app.use('/api/fees', require('./routes/feeRoutes'));
+app.use('/api/dashboard', require('./routes/dashboardRoutes'));
+app.use('/api/workers', require('./routes/workerRoutes'));
+app.use('/api/attendance', require('./routes/attendanceRoutes'));
 
 module.exports = app;
