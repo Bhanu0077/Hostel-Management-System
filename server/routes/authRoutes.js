@@ -6,7 +6,9 @@ const {
     sendOTP,
     verifyOTP,
     setPassword,
-    login
+    login,
+    forgotPassword,   // ✅ ADD THIS
+    resetPassword     // ✅ ADD THIS (if used)
 } = require('../controllers/authController');
 
 router.post('/send-otp', sendOTP);

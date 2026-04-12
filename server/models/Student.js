@@ -1,25 +1,50 @@
 const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
+    name: { type: String, required: true },
     phone: String,
-    fee: {
-        type: Number,
-        required: true
+
+    parent: {
+        name: String,
+        phone: String,
+        address: String
     },
-    paid: {
-        type: Number,
-        default: 0
+
+    guardian: {
+        name: String,
+        phone: String,
+        address: String
     },
-    feeDueDate: Date,
-    washingMachine: {
+
+    photo: String,   // file path
+    aadhar: String,  // file path
+
+    washingMachine: { type: Boolean, default: false },
+
+    joiningDate: { type: Date, required: true },
+
+    gender: {
+        type: String,
+        enum: ['Male', 'Female']
+    },
+
+    inHostel: {
+        type: Boolean,
+        default: true
+    },
+
+    leavingDate: Date,
+
+    leavingReason: String,
+
+    permission: {
         type: Boolean,
         default: false
     },
-    guardian: String
+
+    fee: Number,
+    paid: { type: Number, default: 0 },
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('Student', studentSchema);

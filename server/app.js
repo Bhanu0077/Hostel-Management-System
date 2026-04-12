@@ -20,5 +20,6 @@ app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 app.use('/api/workers', require('./routes/workerRoutes'));
 app.use('/api/attendance', require('./routes/attendanceRoutes'));
 app.use('/api/expenses', require('./routes/expenseRoutes'));
+app.use('/api/leaves', require('./routes/leaveRoutes'));
 
 module.exports = app;
