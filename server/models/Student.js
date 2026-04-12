@@ -21,7 +21,7 @@ const studentSchema = new mongoose.Schema({
 
     washingMachine: { type: Boolean, default: false },
 
-    joiningDate: { type: Date, required: true },
+    joiningDate: { type: Date, default: Date.now },
 
     gender: {
         type: String,
