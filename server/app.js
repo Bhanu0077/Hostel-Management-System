@@ -19,5 +19,6 @@ app.use('/api/fees', require('./routes/feeRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 app.use('/api/workers', require('./routes/workerRoutes'));
 app.use('/api/attendance', require('./routes/attendanceRoutes'));
+app.use('/api/expenses', require('./routes/expenseRoutes'));
 
 module.exports = app;
