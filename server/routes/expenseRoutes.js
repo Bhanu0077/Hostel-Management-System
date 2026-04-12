@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const protect = require('../middleware/authMiddleware');
 
 const {
     addExpense,
@@ -7,8 +8,8 @@ const {
     getWeeklyExpense
 } = require('../controllers/expenseController');
 
-router.post('/', addExpense);
-router.get('/', getExpenses);
-router.get('/weekly', getWeeklyExpense);
+router.post('/', protect, addExpense);
+router.get('/', protect, getExpenses);
+router.get('/weekly', protect, getWeeklyExpense);
 
 module.exports = router;

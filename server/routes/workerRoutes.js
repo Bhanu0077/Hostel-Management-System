@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const protect = require('../middleware/authMiddleware');
 
 const {
     addWorker,
@@ -7,8 +8,8 @@ const {
     deleteWorker
 } = require('../controllers/workerController');
 
-router.post('/', addWorker);
-router.get('/', getWorkers);
-router.delete('/:id', deleteWorker);
+router.post('/', protect, addWorker);
+router.get('/', protect, getWorkers);
+router.delete('/:id', protect, deleteWorker);
 
 module.exports = router;
