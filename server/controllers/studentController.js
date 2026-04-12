@@ -4,8 +4,16 @@ const Student = require('../models/Student');
 // ➕ Add Student
 exports.addStudent = async (req, res) => {
     try {
+        // ✅ VALIDATION (ADD HERE — FIRST THING)
+        if (!req.body.name || !req.body.fee) {
+            return res.status(400).json({ message: "Name and fee required" });
+        }
+
+        // 👉 THEN DB OPERATION
         const student = await Student.create(req.body);
+
         res.json(student);
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

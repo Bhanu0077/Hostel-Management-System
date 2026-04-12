@@ -2,9 +2,25 @@ const Attendance = require('../models/Attendance');
 
 
 // ✅ Mark Worker Attendance
+const Attendance = require('../models/Attendance');
+
 exports.markAttendance = async (req, res) => {
     try {
         const { workerId, status } = req.body;
+
+        const today = new Date().toDateString();
+
+        const alreadyMarked = await Attendance.findOne({
+            worker: workerId,
+            date: {
+                $gte: new Date(today),
+                $lt: new Date(new Date(today).getTime() + 86400000)
+            }
+        });
+
+        if (alreadyMarked) {
+            return res.status(400).json({ message: "Attendance already marked today" });
+        }
 
         const attendance = await Attendance.create({
             worker: workerId,
@@ -17,7 +33,6 @@ exports.markAttendance = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
 
 // 📋 Get Attendance History
 exports.getAttendance = async (req, res) => {

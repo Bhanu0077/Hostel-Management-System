@@ -4,6 +4,9 @@ const Worker = require('../models/Worker');
 // ➕ Add Worker
 exports.addWorker = async (req, res) => {
     try {
+        if (!req.body.name) {
+            return res.status(400).json({ message: "Name required" });
+        }
         const worker = await Worker.create(req.body);
         res.json(worker);
     } catch (error) {

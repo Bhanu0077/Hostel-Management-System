@@ -1,22 +1,33 @@
 const Student = require('../models/Student');
+const Expense = require('../models/Expense');
 
-
-// 📊 Dashboard Stats
 exports.getDashboard = async (req, res) => {
     try {
         const students = await Student.find();
+        const expenses = await Expense.find();
 
         const totalStudents = students.length;
 
-        let totalPending = 0;
+        const totalPending = students.reduce(
+            (sum, s) => sum + (s.fee - s.paid),
+            0
+        );
 
-        students.forEach(student => {
-            totalPending += (student.fee - student.paid);
-        });
+        const totalCollected = students.reduce(
+            (sum, s) => sum + s.paid,
+            0
+        );
+
+        const totalExpenses = expenses.reduce(
+            (sum, e) => sum + e.amount,
+            0
+        );
 
         res.json({
             totalStudents,
-            totalPending
+            totalPending,
+            totalCollected,
+            totalExpenses
         });
 
     } catch (error) {

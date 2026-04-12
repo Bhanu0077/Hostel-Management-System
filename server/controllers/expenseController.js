@@ -4,6 +4,9 @@ const Expense = require('../models/Expense');
 // ➕ Add Expense
 exports.addExpense = async (req, res) => {
     try {
+        if (!req.body.title || !req.body.amount) {
+            return res.status(400).json({ message: "Title and amount required" });
+        }
         const expense = await Expense.create(req.body);
         res.json(expense);
     } catch (error) {
