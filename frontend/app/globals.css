@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f9ff;
+  --foreground: #0b1c30;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Inter, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.quiet-card {
+  @apply rounded-xl border border-slate-200 bg-white shadow-[0px_4px_16px_rgba(15,23,42,0.04)];
+}
+
+.table-wrap {
+  @apply overflow-x-auto rounded-xl border border-slate-200 bg-white;
+}
+
+.page-header {
+  @apply mb-8 space-y-2;
+}
+
+.page-title {
+  @apply text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+}
+
+.page-subtitle {
+  @apply text-sm text-slate-600 md:text-base;
+}

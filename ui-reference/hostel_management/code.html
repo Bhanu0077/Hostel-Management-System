@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinHost AI - Hostel Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "secondary": "#0058be",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-tint": "#565e74",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#001a42",
+                        "outline": "#76777d",
+                        "secondary-container": "#2170e4",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d8e2ff",
+                        "background": "#f8f9ff",
+                        "primary-container": "#131b2e",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#818486",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface-variant": "#45464d",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-fixed": "#e0e3e5",
+                        "primary": "#000000",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "tertiary-container": "#191c1e",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface": "#0b1c30",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "2xl": "64px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h2": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-950 flex justify-between items-center w-full px-6 h-16 fixed top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-none font-['Inter'] tracking-tight">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="Professional profile portrait of a male hostel manager with a friendly expression and neutral office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTTWDI6AoaqRzFMa4wZhF_2rsXAENl1FllnhdaRTlOIyJWR_Nmk1B4XJDQjMbXxuAQgxsIW69PJ1cTCMDyJVrI513EMKWBhyNrgn_D7yTB_m8mtn8ESx-txGV62aoR88rEScdHW10Z9mXD_dY8D6VFQVPgMKipsSjk7yZcVWNiP07lniMgNsd4AFcmdX46LrJ49OfUxyr1KFVCjYzKezwTwGLmurZ_fsD2i0_MjIoG5BpJEjWXJgCJLaZvUM6R2PkWxBV2VkCougo"/>
+</div>
+<span class="text-lg font-semibold text-slate-900 dark:text-slate-50">FinHost AI</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<div class="flex pt-16 h-screen">
+<!-- NavigationDrawer (SideNav) -->
+<aside class="hidden md:flex flex-col h-full w-64 p-4 space-y-2 bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 font-['Inter'] text-sm">
+<div class="px-3 py-4 mb-4">
+<p class="text-xl font-bold text-slate-900 dark:text-slate-50">Admin Portal</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">FinHost AI SaaS</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span> Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">domain</span> Hostel Management
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined">account_balance</span> Financials
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined">psychology</span> AI Insights
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-surface-container-low p-lg lg:p-xl space-y-xl">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div class="space-y-xs">
+<h1 class="font-h1 text-h1 text-on-background">Hostel Management</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage room allocations and student residency across Block A &amp; B.</p>
+</div>
+<div class="flex gap-md">
+<button class="bg-surface-container-lowest border border-outline-variant px-md py-sm rounded-xl font-label-md text-label-md flex items-center gap-sm hover:bg-surface transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span> Export Report
+                    </button>
+<button class="bg-primary text-on-primary px-md py-sm rounded-xl font-label-md text-label-md flex items-center gap-sm hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span> Add Resident
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="col-span-1 md:col-span-1 bg-white border border-slate-200 p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Rooms</p>
+<h2 class="font-h2 text-h2 mt-sm">124</h2>
+<div class="mt-md flex items-center text-secondary font-label-sm">
+<span class="material-symbols-outlined text-sm mr-1">meeting_room</span> 12 New units
+                    </div>
+</div>
+<div class="col-span-1 md:col-span-1 bg-white border border-slate-200 p-lg rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current Students</p>
+<h2 class="font-h2 text-h2 mt-sm">348</h2>
+<div class="mt-md flex items-center text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-sm mr-1">group</span> 94% Capacity
+                    </div>
+</div>
+<div class="col-span-1 md:col-span-2 bg-primary-container text-white p-lg rounded-xl flex justify-between items-center overflow-hidden relative">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-sm">
+<span class="bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold tracking-widest">AI INSIGHT</span>
+</div>
+<h3 class="font-h3 text-h3 leading-tight">Projected vacancy in Block B<br/>is increasing by 12% next month.</h3>
+<p class="text-on-primary-container text-body-sm mt-md">Suggested action: Launch early-bird renewal campaign.</p>
+</div>
+<span class="material-symbols-outlined text-[80px] opacity-10 absolute -right-4 -bottom-4">psychology</span>
+</div>
+</div>
+<!-- Room Occupancy Grid -->
+<section class="space-y-lg">
+<div class="flex items-center justify-between">
+<h3 class="font-h3 text-h3 flex items-center gap-md">
+                        Room Inventory
+                        <span class="bg-secondary-container text-on-secondary-container text-[12px] px-3 py-1 rounded-full font-bold">BLOCK A</span>
+</h3>
+<div class="flex gap-sm">
+<span class="flex items-center gap-1 font-label-sm text-on-surface-variant"><div class="w-3 h-3 rounded-full bg-secondary"></div> Occupied</span>
+<span class="flex items-center gap-1 font-label-sm text-on-surface-variant"><div class="w-3 h-3 rounded-full bg-surface-container-highest"></div> Vacant</span>
+<span class="flex items-center gap-1 font-label-sm text-on-surface-variant"><div class="w-3 h-3 rounded-full bg-error"></div> Maintenance</span>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-md">
+<!-- Room Loop Emulation -->
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">101</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">2/2 BEDS</p>
+</div>
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">102</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">1/1 BEDS</p>
+</div>
+<div class="bg-surface-container-highest border border-slate-100 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">103</span>
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">0/2 BEDS</p>
+</div>
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">104</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">2/2 BEDS</p>
+</div>
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">105</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">1/2 BEDS</p>
+</div>
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">106</span>
+<div class="w-2 h-2 rounded-full bg-error"></div>
+</div>
+<p class="text-[10px] font-bold text-error">CLEANING</p>
+</div>
+<!-- More generic rooms -->
+<div class="bg-white border border-slate-200 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">107</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">2/2 BEDS</p>
+</div>
+<div class="bg-surface-container-highest border border-slate-100 p-md rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-bold text-slate-400 group-hover:text-secondary">108</span>
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+</div>
+<p class="text-[10px] font-bold text-slate-500">0/1 BEDS</p>
+</div>
+</div>
+</section>
+<!-- Student List Section -->
+<section class="space-y-lg pb-2xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<h3 class="font-h3 text-h3">Resident Students</h3>
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all font-body-sm text-body-sm" placeholder="Search by name, ID or room..." type="text"/>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 border-b border-slate-200">
+<tr>
+<th class="px-lg py-md font-label-md text-slate-900">Student</th>
+<th class="px-lg py-md font-label-md text-slate-900">Room</th>
+<th class="px-lg py-md font-label-md text-slate-900">Status</th>
+<th class="px-lg py-md font-label-md text-slate-900">Next Payment</th>
+<th class="px-lg py-md font-label-md text-slate-900 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Student 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a young female student with a bright smile, wearing a casual sweater in a library setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKQqQ3HnIvnHrAfi8K_wPTLd8R1jjP4Lgng4cyj-3WM6Us7r1Ujpk1jkijlU_BgeN3BiXb4_38JRo0iYVdm5c3UqzEqgqPwRDEfQ1Hxrogu4EFEcXPnYVVOZHq31_sGwlr6idrzBpMKnHtsOmTPCd27nzCv2J7um9zS4o1AyK45kIzlhoa3JHvAqYHOZy6-vE03_ERi_RaddWR0fDbH3rJcKP-jeC6oKFNLf13YayGzXUjP5GMPzyQN4gvTpVPPmWfawvsu-p5XYMM"/>
+</div>
+<div>
+<p class="font-body-md font-semibold text-slate-900">Elena Rodriguez</p>
+<p class="text-[12px] text-slate-500">ID: FH-2024-8912</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-slate-600">Room 104 (A)</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-100">
+                                        Active
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-slate-900">Oct 12, 2024</p>
+<p class="text-[12px] text-slate-500">$1,200.00</p>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-slate-400 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Student 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Young adult male student with glasses looking thoughtfully into the distance, outdoor university campus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDupqcghBAkmqkhvJ48EHNe7CR5EJs4XBnTLwyIbdd-jeuOXiaWzzgMkMn7OVq0WwyEYVnBQ8-gqq0G6I9zlgwVvX7o479wuMt3K7rA6k-OeRfhb-g4eob1ohLAmHUG77tIzVHpfLogC7EzQi5VmL9VbYJ1cHUqx5OZIwKNlQEkQd6sfn0Dqv2tdeBvRzxsmrxT6J6R4R-gWDWGDrWt7R5gb3J05pPr1djur5yfeqtGdWVrzhrJ0ABAi2NhT8xqS_LXQwICsxTl1mMF"/>
+</div>
+<div>
+<p class="font-body-md font-semibold text-slate-900">Marcus Chen</p>
+<p class="text-[12px] text-slate-500">ID: FH-2024-3321</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-slate-600">Room 101 (A)</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-100">
+                                        Pending Payment
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-error font-medium">Overdue (2d)</p>
+<p class="text-[12px] text-slate-500">$950.00</p>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-slate-400 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Student 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Smiling university student with curly hair wearing a blue denim jacket in a bright sunlit atrium" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA4Tkab8EdLNapQ-fjhPutYCZz3MAB3Ky_PWkfN-Jc51NLtQsn2nTqsgWSTsrDtVuHteeByhJnTzdQNLUUqte2ew5S0F5IFhU4MFhiZEXvyUr4ucLJFIqCNwx4FeBM8ASVNBfrogMyk_BlJMY-lNZD0DyR4wLUGQxhzSlptk4VE6Y45I_aqqO55XZGDEyCXS18G5zsdaaJ0_T5qFGrtZ12dyPatewLThUcQm3mivJT2SHuj22TDNcaAyQLCNHknKO8UBeBCslzvg-R"/>
+</div>
+<div>
+<p class="font-body-md font-semibold text-slate-900">Julian Barnes</p>
+<p class="text-[12px] text-slate-500">ID: FH-2024-5542</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-slate-600">Room 105 (A)</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-100">
+                                        Active
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-slate-900">Oct 24, 2024</p>
+<p class="text-[12px] text-slate-500">$1,200.00</p>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-slate-400 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-lg py-md bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+<p class="text-xs text-slate-500 font-label-sm">Showing 1-10 of 348 students</p>
+<div class="flex gap-2">
+<button class="p-1 rounded border border-slate-200 hover:bg-white transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="p-1 rounded border border-slate-200 hover:bg-white transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-none font-['Inter'] text-[11px] font-medium">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+            Overview
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-900 dark:text-slate-50 bg-slate-100 dark:bg-slate-800 rounded-xl px-3 py-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+            Rooms
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+            Students
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+            Expenses
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+            AI Chat
+        </a>
+</nav>
+</body></html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#0b1c30",
+                    "surface-container": "#e5eeff",
+                    "secondary": "#0058be",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-tint": "#565e74",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#001a42",
+                    "outline": "#76777d",
+                    "secondary-container": "#2170e4",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#d8e2ff",
+                    "background": "#f8f9ff",
+                    "primary-container": "#131b2e",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed": "#131b2e",
+                    "on-primary-container": "#7c839b",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#818486",
+                    "inverse-primary": "#bec6e0",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-surface-variant": "#45464d",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary-container": "#fefcff",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dae2fd",
+                    "tertiary-fixed": "#e0e3e5",
+                    "primary": "#000000",
+                    "surface-bright": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "tertiary-container": "#191c1e",
+                    "surface-dim": "#cbdbf5",
+                    "on-surface": "#0b1c30",
+                    "outline-variant": "#c6c6cd",
+                    "on-tertiary-fixed": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "2xl": "64px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "8px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "xl": "40px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-xl": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+        .quiet-shadow { box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-background">
+<!-- Shell Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- NavigationDrawer (Shared Component) -->
+<aside class="hidden md:flex flex-col h-screen p-4 space-y-2 bg-slate-50 dark:bg-slate-900 h-full w-64 border-r border-slate-200 dark:border-slate-800 transition-colors duration-150">
+<div class="flex items-center gap-3 px-2 py-6">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">domain</span>
+</div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-slate-50">FinHost AI</h1>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard is Active -->
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm font-['Inter'] text-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 font-['Inter'] text-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span>Hostel Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 font-['Inter'] text-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span>Financials</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 font-['Inter'] text-sm transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span>AI Insights</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 px-2">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="professional male portrait with neutral background and soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA0epFml7xNvAr_er5TkiiEzbDQ96h2a1fOsgj2JVflM4N6CKaTwUtNSagHJPwDlDmUQLinE-DkScjn4AnIx1nVoLrMFGOqMfoihhEoCjgh6VczlC_hoR8tXEuPiBSqprsN_RinCszw3bjFI3JtjPMG_tzjRPwBIPplAo9hAI3qWc2fWv5_1LPJ2h2H37c5ASWTv2trbgHBGFXDQav6FLz1O3pCC9WrCyV_Y0tlze0dbthvCdHdobkMgGxglLfGwPvF9MDls1YcYj9"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-slate-50">Admin Portal</span>
+<span class="text-xs text-slate-500">Manager</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-y-auto">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-white dark:bg-slate-950 font-['Inter'] tracking-tight docked full-width top-0 border-b border-slate-200 dark:border-slate-800 shadow-none transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-slate-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-lg font-semibold text-slate-900 dark:text-slate-50">Dashboard</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-slate-500 hover:text-slate-900 cursor-pointer">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</div>
+<img class="w-8 h-8 rounded-full border border-slate-200 object-cover" data-alt="close-up of a user profile avatar in a circular frame with a professional look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClAZGQYGF7lSokFKT45nf6EduyNtY2PrU2KGMCxvd0Zo4AucQlMX0LpYqrJTPZSKIaDY4oT-awPNX5CbCJcyz2J2l7EZVU2XfQHcycPHQbHQhMOOlxlquTkdKX-w-JmUud9z-Dq6KI6bPLRUVHcIoO3YmFdToKwFfZq1qaphHZBoXC_J6DHZ-ZjqM9bZgmZpkMcZI-a_YWIJgExhe5wgj_h89rePmDkWzPxvqNNS97yR-e3WoxYdPcu2s8tkPvfudiGE-2tshXyL2b"/>
+</div>
+</header>
+<div class="p-lg md:p-xl space-y-xl max-w-[1280px] mx-auto w-full">
+<!-- Welcome Section -->
+<section class="space-y-unit">
+<p class="font-label-md text-secondary font-medium uppercase tracking-wider">Operational Overview</p>
+<h1 class="font-h1 text-on-background">Welcome back, Alex.</h1>
+<p class="font-body-md text-on-surface-variant max-w-2xl">FinHost AI has identified 3 areas of financial optimization for this week's occupancy cycle.</p>
+</section>
+<!-- Core Financial Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Revenue Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl quiet-shadow flex flex-col justify-between h-[180px]">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface-variant">Total Revenue</span>
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+<h3 class="font-h2 text-on-background mt-sm">$124,500.00</h3>
+</div>
+<div class="flex items-center gap-2 text-sm text-green-600 font-medium">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12% from last month</span>
+</div>
+</div>
+<!-- Students Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl quiet-shadow flex flex-col justify-between h-[180px]">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface-variant">Active Students</span>
+<span class="material-symbols-outlined text-secondary">group</span>
+</div>
+<h3 class="font-h2 text-on-background mt-sm">482</h3>
+</div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border border-white object-cover" data-alt="avatar of a young male student with a neutral smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMCsRx4yMZML2R_8B4zydc1vQQ4GuRyk-chu5ExToQpVw6f4WcESA0gzfQU9F2CH1rPXzEiaVmxetzDEinGnzAK4xM9_s404gep_sW-fKNwiK2hB1tWyIVMOaokG3wOBm2nLt6MKJF4AFlUQOwaZg8T5wFP0ZkrdZco8UZ9NcoZOntZvi1dS5wPvhDkO6KVmZ3rhYUMol38xIr1r-ZlsHA5mQrBPH70Fag7zJGvJohuvADPRqYox9ElTj706YnX6DkX7e4xR570P7s"/>
+<img class="w-6 h-6 rounded-full border border-white object-cover" data-alt="avatar of a smiling young woman with a friendly professional look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrb82Mpg0DC3WnujBLcz00UJrVE38NHfjmwQsn774imo6NXzVSzduxPxdJW_wGOH1Q8t838ZjnHONNT9PG3B-2YsX28_nW4Aq9LH4tF2xDu9WsK9vP3UzxBDwEZ3tnO0wiPyogmHvU93k545DiRdAolxAQmR47AeWGLl17Ryikagl7tO2C6LtduB5jKn6g7oJkcNqHOWI5zrhrRBKQzMSAs2sGe9Ld0aZFELL6lxm7BSkhBLOwf4e5Tz3DPRPFIOfY418W83GONLxn"/>
+<div class="w-6 h-6 rounded-full bg-slate-100 border border-white flex items-center justify-center text-[8px] font-bold">+12</div>
+</div>
+<span>98% Occupancy</span>
+</div>
+</div>
+<!-- Expenses Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-xl quiet-shadow flex flex-col justify-between h-[180px]">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface-variant">Pending Expenses</span>
+<span class="material-symbols-outlined text-error">receipt_long</span>
+</div>
+<h3 class="font-h2 text-on-background mt-sm">$12,840.12</h3>
+</div>
+<div class="flex items-center gap-2 text-sm text-error font-medium">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+<span>4 bills due today</span>
+</div>
+</div>
+</section>
+<!-- AI Insights & Alerts Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Main Alerts & Activity (Left) -->
+<div class="lg:col-span-8 space-y-lg">
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden quiet-shadow">
+<div class="px-lg py-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-h3 text-on-background">System Alerts</h3>
+<button class="text-sm font-medium text-secondary hover:underline">Mark all as read</button>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Critical Alert -->
+<div class="p-lg flex gap-md items-start bg-error-container/10">
+<div class="p-2 bg-error-container text-on-error-container rounded-lg">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-background">Unpaid Utility Overdue</p>
+<span class="text-xs text-on-surface-variant">2h ago</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-xs">Block C electricity bill has surpassed the 30-day grace period. AI suggests immediate payment to avoid surcharges.</p>
+<div class="mt-md flex gap-sm">
+<button class="px-md py-xs bg-primary text-white text-sm rounded-lg font-medium">Pay Now</button>
+<button class="px-md py-xs border border-outline-variant text-sm rounded-lg font-medium">Review Bill</button>
+</div>
+</div>
+</div>
+<!-- Normal Alert -->
+<div class="p-lg flex gap-md items-start">
+<div class="p-2 bg-surface-container text-secondary rounded-lg">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-background">Late Fee Processing</p>
+<span class="text-xs text-on-surface-variant">5h ago</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-xs">AI has automatically calculated late fees for 14 students. Ready for review and dispatch.</p>
+<div class="mt-md">
+<button class="text-sm font-medium text-secondary flex items-center gap-1">Review List <span class="material-symbols-outlined text-xs">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Map / Locations -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden quiet-shadow">
+<div class="px-lg py-md border-b border-outline-variant">
+<h3 class="font-h3 text-on-background">Campus Coverage</h3>
+</div>
+<div class="h-64 relative">
+<div class="absolute inset-0 bg-slate-200 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="clean minimal city map with subtle colors and simple icons representing buildings" data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmbpwLCIpBmMpGke0laQvJQIwwwRPnIWvLqcW31rZU0zeTJUZo5wsBA0UVzrNy4tCeYjuHOi1dBhEYhV7UpZGHSRL45QPMJOYk7W693mb6ZBiHZvrYjusZpF4LUPg69LWPPSaS-qlKMOwZT3ziU-jvwCPOW0V9Wf2t233BShaNsuQ-IA3Bt9_zHYsLyFRLMu7uAXRak9n7USSvmE9txWYZFBBLH90pW3PQ6_HCQEKOd3AxTasQkhoHUdoV5DU7XHjRy2-2sz0M6grH"/>
+<div class="absolute top-1/2 left-1/3 p-2 bg-white border border-outline-variant rounded shadow-md flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-bold">Block A (Full)</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 p-2 bg-white border border-outline-variant rounded shadow-md flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+<span class="text-xs font-bold">Block C (3 Empty)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insights (Right) -->
+<aside class="lg:col-span-4 space-y-lg">
+<div class="bg-primary-container text-on-primary-container p-lg rounded-xl space-y-md border border-slate-800">
+<div class="flex items-center gap-2">
+<div class="px-2 py-0.5 border border-on-primary-container rounded text-[10px] font-bold uppercase tracking-widest">AI Insights</div>
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+</div>
+<p class="font-body-md text-slate-100">AI prediction shows a 15% increase in maintenance costs for the next quarter based on historical utility usage in Block B.</p>
+<div class="pt-md border-t border-slate-700">
+<h4 class="text-xs font-bold uppercase text-slate-400 mb-2">Recommendation</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm">
+<span class="material-symbols-outlined text-xs mt-1 text-green-400">check_circle</span>
+<span>Update air filtration in Block B to reduce energy consumption by 8%.</span>
+</li>
+<li class="flex items-start gap-2 text-sm">
+<span class="material-symbols-outlined text-xs mt-1 text-green-400">check_circle</span>
+<span>Consolidate bill payments to Monday cycles to avoid bank fees.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="bg-white border border-outline-variant rounded-xl p-lg quiet-shadow">
+<h3 class="font-label-md text-on-background mb-md">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-sm">
+<button class="flex flex-col items-center justify-center p-md bg-background border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">add_circle</span>
+<span class="text-xs font-medium mt-1">Add Student</span>
+</button>
+<button class="flex flex-col items-center justify-center p-md bg-background border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">receipt</span>
+<span class="text-xs font-medium mt-1">New Invoice</span>
+</button>
+<button class="flex flex-col items-center justify-center p-md bg-background border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">meeting_room</span>
+<span class="text-xs font-medium mt-1">Assign Room</span>
+</button>
+<button class="flex flex-col items-center justify-center p-md bg-background border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">support_agent</span>
+<span class="text-xs font-medium mt-1">Contact Support</span>
+</button>
+</div>
+</div>
+</aside>
+</section>
+</div>
+<!-- BottomNavBar (Shared Component - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 transition-transform active:scale-95">
+<a class="flex flex-col items-center justify-center text-slate-900 dark:text-slate-50 bg-slate-100 dark:bg-slate-800 rounded-xl px-3 py-1 font-['Inter'] text-[11px] font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter'] text-[11px] font-medium" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+<span>Rooms</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter'] text-[11px] font-medium" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Students</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter'] text-[11px] font-medium" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Expenses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-['Inter'] text-[11px] font-medium" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span>AI Chat</span>
+</a>
+</nav>
+</main>
+</div>
+<!-- Floating Action Button (Only on Dashboard/Home) -->
+<button class="fixed bottom-lg right-lg md:bottom-xl md:right-xl w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up | FinHost AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e5eeff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#191c1e",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "outline": "#76777d",
+                        "on-surface-variant": "#45464d",
+                        "surface-tint": "#565e74",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary-fixed": "#dae2fd",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-primary-fixed": "#131b2e",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#131b2e",
+                        "secondary-container": "#2170e4",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#818486",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#7c839b",
+                        "on-tertiary-fixed": "#191c1e",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#0058be",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c6c6cd",
+                        "primary": "#000000",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "sm": "8px",
+                        "container-max": "1280px",
+                        "2xl": "64px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "h2": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-md">
+<!-- Main Container -->
+<main class="w-full max-w-[1280px] grid grid-cols-1 lg:grid-cols-12 min-h-[800px] bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm">
+<!-- Branding & Narrative Section (Asymmetric Editorial Style) -->
+<section class="hidden lg:flex lg:col-span-5 bg-surface-container relative flex-col justify-between p-2xl">
+<div class="relative z-10">
+<div class="flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="account_balance">account_balance</span>
+<span class="font-h3 text-primary tracking-tighter">FinHost AI</span>
+</div>
+<h1 class="font-display-lg text-on-surface mb-md">Quiet Intelligence for Indian Enterprise.</h1>
+<p class="font-body-lg text-on-surface-variant max-w-[400px]">
+                    Experience a financial partnership built on transparency, regulatory precision, and institutional trust.
+                </p>
+</div>
+<!-- Image/Visual Anchor -->
+<div class="absolute bottom-0 left-0 w-full h-1/2 opacity-80 overflow-hidden">
+<img alt="Abstract minimalist design" class="w-full h-full object-cover" data-alt="Modern minimalist architectural interior with clean lines, soft natural light, and a palette of white and slate grey tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDknZDOj810U52O-2CfroozFdZeQShAO02yw5Rr6p40vo2MqGQSFUc99Zj4lD3KBNa4FtNnwXMfuBzF-P2x-uVffML_dB2_uleUYddEGeleifyal9olwvdtaSJK6uLofaJ-cvaCSGX81bcPTkCiME9GTPp17uilFfczln4J4ntUR8flZDD-XmyJgwuR52p7VbvCuI0mbl9rYvG3PacOA_BMT8Mke7WJYAuzurxx78bVVwQXOu7rcGxZiBdm-k81d5zMoil0iEirJEPP"/>
+</div>
+<div class="relative z-10 flex items-center gap-sm">
+<div class="h-[1px] w-12 bg-outline-variant"></div>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">Built for Bharat</span>
+</div>
+</section>
+<!-- Sign-Up Form Section -->
+<section class="col-span-1 lg:col-span-7 flex flex-col justify-center px-lg py-2xl md:px-2xl lg:px-[120px] bg-surface-container-lowest">
+<!-- Mobile Logo (Visible only on mobile) -->
+<div class="lg:hidden flex items-center gap-xs mb-xl">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+<span class="font-h3 text-primary tracking-tighter">FinHost AI</span>
+</div>
+<div class="mb-xl">
+<h2 class="font-h2 text-on-surface mb-xs">Create Account</h2>
+<p class="font-body-md text-on-surface-variant">Join the next generation of financial management.</p>
+</div>
+<form class="space-y-lg">
+<!-- Full Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface" for="name">Full Name</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded bg-transparent focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all placeholder:text-outline-variant font-body-sm" id="name" name="name" placeholder="Arjun Sharma" type="text"/>
+</div>
+<!-- Email -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface" for="email">Email Address</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded bg-transparent focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all placeholder:text-outline-variant font-body-sm" id="email" name="email" placeholder="arjun@company.in" type="email"/>
+</div>
+<!-- Mobile Number -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface" for="phone">Indian Mobile Number</label>
+<div class="flex">
+<span class="inline-flex items-center px-md py-sm border border-r-0 border-outline-variant rounded-l bg-surface-container-low text-on-surface-variant font-body-sm">
+                            +91
+                        </span>
+<input class="w-full px-md py-sm border border-outline-variant rounded-r bg-transparent focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all placeholder:text-outline-variant font-body-sm" id="phone" name="phone" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface" for="password">Password</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded bg-transparent focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all placeholder:text-outline-variant font-body-sm" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+<!-- GST Note (Subtle contextual info) -->
+<div class="p-md bg-surface-container-low rounded border border-outline-variant/30 flex gap-sm">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="verified_user">verified_user</span>
+<p class="font-label-sm text-on-surface-variant">
+                        Our platform includes <span class="text-on-surface font-semibold">GST-ready features</span> designed specifically for compliance with Indian taxation laws.
+                    </p>
+</div>
+<!-- Submit Action -->
+<div class="pt-md">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-label-md hover:bg-primary/90 active:scale-[0.98] transition-all duration-200" type="submit">
+                        Create Account
+                    </button>
+</div>
+</form>
+<div class="mt-xl text-center">
+<p class="font-body-sm text-on-surface-variant">
+                    Already have an account? 
+                    <a class="text-secondary font-label-md hover:underline ml-xs" href="#">Log In</a>
+</p>
+</div>
+<!-- Footer links in sign-up flow -->
+<div class="mt-2xl pt-xl border-t border-outline-variant flex flex-wrap gap-md justify-center lg:justify-start">
+<a class="font-label-sm text-outline hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-outline hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-outline hover:text-on-surface transition-colors" href="#">Contact Support</a>
+</div>
+</section>
+</main>
+</body></html>

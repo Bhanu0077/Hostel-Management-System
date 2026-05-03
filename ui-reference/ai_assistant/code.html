@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinHost AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "secondary": "#0058be",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-tint": "#565e74",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#001a42",
+                        "outline": "#76777d",
+                        "secondary-container": "#2170e4",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d8e2ff",
+                        "background": "#f8f9ff",
+                        "primary-container": "#131b2e",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#818486",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface-variant": "#45464d",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-fixed": "#e0e3e5",
+                        "primary": "#000000",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "tertiary-container": "#191c1e",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface": "#0b1c30",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "2xl": "64px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h2": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface">
+<div class="flex h-screen overflow-hidden">
+<!-- Navigation Drawer (SideNav) -->
+<aside class="hidden md:flex flex-col h-screen p-4 space-y-2 w-64 border-r border-slate-200 bg-slate-50">
+<div class="flex items-center space-x-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+</div>
+<div>
+<h1 class="text-slate-900 font-bold text-xl leading-none">FinHost AI</h1>
+<span class="text-xs text-slate-500 uppercase tracking-widest">Admin Portal</span>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-label-md text-label-md">Hostel Management</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-label-md text-label-md">Financials</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 bg-white text-slate-900 border border-slate-200 rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">AI Insights</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-slate-200">
+<div class="flex items-center space-x-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="professional portrait of a hostel manager in a clean white studio with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYEt4lDkd1m2yxJ6fy4zbTXmW8KItebXfxxC0ph554IO4mmVQgR0-5WODmG2txwfZLDVNAI60OrjNpIxEQSLK97wDb80htZMTB7aXVpbTPCx_Cu_-jFXk_9BTxL6x9BTVBorZAjURqvtddm9ijvM7d3qJrY0C2VNDjLBBplwgKjs_6_BYVqXEg883Jrl6-IL9wZxFGY1Afjhzo9VUbSpNNtkkjSyOUcRWmEp6cRDzqDZQKxXcniHns7cOAb6wcFy8fpMkeTX5Khr3V"/>
+<div>
+<p class="text-sm font-semibold text-slate-900">Manager</p>
+<p class="text-xs text-slate-500">SaaS Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col relative bg-white h-full">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-white border-b border-slate-200">
+<div class="flex items-center space-x-4">
+<div class="md:hidden w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="close-up of user profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK7mBkeZQulAZH_-do29EM2KvvrO73K4Ghs-Z0KzxaRJQQT5eKhBDTdoUOkaRKdnGl9Lj6tpqjvO1w4O9Ai4K6jrPmYjjxQzpO9dpJgVcMdtih60Xmo_j1gMm9F1g40IKMvbm2TPCECe7jgFPXelFaV7CMGjJEQPLLDCuqKKBbqys1oyHOFD4JR5c2tEgmFO1boKKhrp0Z92Bf4bShs9MCVKzLiePFfcfZfYgj7x67B1NZQDTyjtpZYrQbgFQq0LWgFd0WCWSH2m8X"/>
+</div>
+<span class="text-lg font-semibold text-slate-900 font-['Inter'] tracking-tight">AI Chat</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-slate-900" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Chat Interface Canvas -->
+<div class="flex-1 overflow-y-auto p-gutter space-y-lg max-w-container-max mx-auto w-full">
+<!-- System/AI Welcome Message -->
+<div class="flex flex-col items-center justify-center py-xl text-center">
+<div class="w-16 h-16 bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<h2 class="font-h3 text-h3 text-slate-900 mb-xs">How can I help with your hostel finances today?</h2>
+<p class="font-body-md text-body-md text-slate-500 max-w-md">I can help track expenses, analyze student occupancy, or predict next month's revenue based on current trends.</p>
+</div>
+<!-- Chat Messages -->
+<div class="space-y-lg">
+<!-- Message Group: User -->
+<div class="flex justify-end">
+<div class="max-w-[80%] bg-primary-container text-on-primary-container px-lg py-md rounded-2xl rounded-tr-none shadow-sm">
+<p class="font-body-md text-body-md text-white/90">What is our projected revenue for the next 3 months considering the current student move-out notices?</p>
+</div>
+</div>
+<!-- Message Group: AI -->
+<div class="flex justify-start items-start space-x-md">
+<div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="max-w-[85%] space-y-md">
+<div class="bg-slate-50 border border-slate-100 text-on-surface px-lg py-md rounded-2xl rounded-tl-none">
+<p class="font-body-md text-body-md mb-md">Based on the 12 active move-out notices for August and the current booking velocity, here is your projection:</p>
+<!-- AI Insight Component: Chart/Data Table -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden mb-md shadow-sm">
+<table class="w-full text-left">
+<thead class="bg-slate-50 border-b border-slate-200">
+<tr>
+<th class="px-md py-sm font-label-md text-slate-900">Month</th>
+<th class="px-md py-sm font-label-md text-slate-900 text-right">Projected Revenue</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr>
+<td class="px-md py-sm text-body-sm text-slate-600">August 2024</td>
+<td class="px-md py-sm text-body-sm text-slate-900 text-right">$42,500 <span class="text-error font-medium">(-8%)</span></td>
+</tr>
+<tr>
+<td class="px-md py-sm text-body-sm text-slate-600">September 2024</td>
+<td class="px-md py-sm text-body-sm text-slate-900 text-right">$48,200 <span class="text-secondary font-medium">(+13%)</span></td>
+</tr>
+<tr>
+<td class="px-md py-sm text-body-sm text-slate-600">October 2024</td>
+<td class="px-md py-sm text-body-sm text-slate-900 text-right">$49,800 <span class="text-secondary font-medium">(+3%)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-100/50 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+<span>AI generated analysis based on historical occupancy and seasonal trends.</span>
+</div>
+</div>
+<div class="flex space-x-sm">
+<button class="flex items-center space-x-1 px-3 py-1 border border-slate-200 rounded-full text-xs font-medium text-slate-500 hover:bg-slate-50">
+<span class="material-symbols-outlined text-[14px]" data-icon="thumb_up">thumb_up</span>
+<span>Helpful</span>
+</button>
+<button class="flex items-center space-x-1 px-3 py-1 border border-slate-200 rounded-full text-xs font-medium text-slate-500 hover:bg-slate-50">
+<span class="material-symbols-outlined text-[14px]" data-icon="content_copy">content_copy</span>
+<span>Copy Analysis</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Message Group: User -->
+<div class="flex justify-end">
+<div class="max-w-[80%] bg-primary-container text-on-primary-container px-lg py-md rounded-2xl rounded-tr-none shadow-sm">
+<p class="font-body-md text-body-md text-white/90">How does this compare to last year's Q3 performance?</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Chat Input Area -->
+<footer class="p-gutter border-t border-slate-200 bg-white md:static sticky bottom-0 z-10">
+<div class="max-w-container-max mx-auto space-y-md">
+<!-- Suggested Actions/Prompts -->
+<div class="flex items-center space-x-sm overflow-x-auto pb-2 scrollbar-hide">
+<button class="whitespace-nowrap px-md py-sm bg-slate-50 border border-slate-200 rounded-full font-label-sm text-slate-600 hover:border-secondary hover:text-secondary transition-colors">
+                            Compare with last year
+                        </button>
+<button class="whitespace-nowrap px-md py-sm bg-slate-50 border border-slate-200 rounded-full font-label-sm text-slate-600 hover:border-secondary hover:text-secondary transition-colors">
+                            Generate PDF report
+                        </button>
+<button class="whitespace-nowrap px-md py-sm bg-slate-50 border border-slate-200 rounded-full font-label-sm text-slate-600 hover:border-secondary hover:text-secondary transition-colors">
+                            Occupancy breakdown
+                        </button>
+<button class="whitespace-nowrap px-md py-sm bg-slate-50 border border-slate-200 rounded-full font-label-sm text-slate-600 hover:border-secondary hover:text-secondary transition-colors">
+                            Expense alert log
+                        </button>
+</div>
+<!-- Input Bar -->
+<div class="relative flex items-center">
+<div class="absolute left-md flex items-center text-slate-400">
+<span class="material-symbols-outlined" data-icon="attachment">attachment</span>
+</div>
+<input class="w-full pl-xl pr-2xl py-lg bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none font-body-md text-on-surface transition-all placeholder:text-slate-400" placeholder="Ask FinHost AI anything about your financials..." type="text"/>
+<button class="absolute right-md w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:bg-slate-800 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+<div class="text-center">
+<span class="text-[10px] text-slate-400 uppercase tracking-tighter">FinHost AI - v2.4.0 High-Fidelity Ledger Model</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 backdrop-blur-md border-t border-slate-200">
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-[11px] font-medium">Overview</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+<span class="font-['Inter'] text-[11px] font-medium">Rooms</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Inter'] text-[11px] font-medium">Students</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-[11px] font-medium">Expenses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-900 bg-slate-100 rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-['Inter'] text-[11px] font-medium">AI Chat</span>
+</a>
+</nav>
+</div>
+</body></html>
